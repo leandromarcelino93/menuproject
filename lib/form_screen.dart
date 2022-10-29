@@ -132,7 +132,7 @@ class _FormScreenState extends State<FormScreen> {
                         // print(imageController.text);
                         MenuInherited.of(widget.menuContext).newMenu(nameController.text,
                             priceController.text, imageController.text);
-                        Navigator.pop;
+                        Navigator.pop(context);
                         ScaffoldMessenger.of(widget.menuContext).showSnackBar(
                             const SnackBar(content: Text('Nova Opção Adicionada.')));
                         //context quer dizer que está verificando o scaffold desta própria tela
