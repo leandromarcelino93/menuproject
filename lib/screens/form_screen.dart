@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:menuproject/data/menu_inherited.dart';
-import 'package:menuproject/initialscreen.dart';
-
 
 class FormScreen extends StatefulWidget {
-
   const FormScreen({Key? key, required this.menuContext}) : super(key: key);
 
   final BuildContext menuContext;
@@ -17,7 +14,15 @@ class _FormScreenState extends State<FormScreen> {
   TextEditingController nameController = TextEditingController();
   TextEditingController priceController = TextEditingController();
   TextEditingController imageController = TextEditingController();
+
   final _formKey = GlobalKey<FormState>();
+
+  bool valueValidator(String? value) {
+    if (value != null && value.isEmpty) {
+      return true;
+    }
+    return false;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +50,7 @@ class _FormScreenState extends State<FormScreen> {
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
                       validator: (String? value) {
-                        if (value != null && value.isEmpty) {
+                        if (valueValidator(value)) {
                           return 'Insira o nome da opção';
                         }
                         return null;
@@ -65,7 +70,7 @@ class _FormScreenState extends State<FormScreen> {
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
                       validator: (value) {
-                        if (value!.isEmpty) {
+                        if (valueValidator(value)) {
                           return 'Digite um preço para a nova opção';
                         }
                         return null;
@@ -84,16 +89,16 @@ class _FormScreenState extends State<FormScreen> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
+                      onChanged: (text) {
+                        setState(() {});
+                      },
                       validator: (value) {
-                        if (value!.isEmpty) {
+                        if (valueValidator(value)) {
                           return 'Insira um URL de Imagem!';
                         }
                         return null;
                       },
                       keyboardType: TextInputType.url,
-                      onChanged: (text) {
-                        setState(() {});
-                      },
                       controller: imageController,
                       textAlign: TextAlign.center,
                       decoration: InputDecoration(
@@ -130,12 +135,17 @@ class _FormScreenState extends State<FormScreen> {
                         // print(nameController.text);
                         // print(priceController.text);
                         // print(imageController.text);
-                        MenuInherited.of(widget.menuContext).newMenu(nameController.text,
-                            priceController.text, imageController.text);
+                        MenuInherited.of(widget.menuContext).newMenu(
+                          nameController.text,
+                          priceController.text,
+                          imageController.text,
+                        );
+                        //widget.menuContext está trazendo as informações que queremos do contexto presente na tela inicial
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(const SnackBar(
+                          content: Text('Nova Opção Adicionada.'),
+                        ));
                         Navigator.pop(context);
-                        ScaffoldMessenger.of(widget.menuContext).showSnackBar(
-                            const SnackBar(content: Text('Nova Opção Adicionada.')));
-                        //context quer dizer que está verificando o scaffold desta própria tela
                       }
                     },
                     child: Text('Adicionar'),

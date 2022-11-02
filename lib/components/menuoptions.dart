@@ -5,7 +5,7 @@ class MenuOptions extends StatefulWidget {
   final String priceoption;
   final String optionphoto;
 
-  const MenuOptions(this.menuoption, this.priceoption, this.optionphoto,
+  MenuOptions(this.menuoption, this.priceoption, this.optionphoto,
       {Key? key})
       : super(key: key);
 
