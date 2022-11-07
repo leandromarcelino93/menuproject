@@ -28,12 +28,13 @@ class _InitialScreenState extends State<InitialScreen> {
               context,
               MaterialPageRoute(
                   builder: (contextNew) => FormScreen(
-                        menuContext: context,
-                      )));
+                    menuContext: context,
+                  ))).then((value) => setState((){print('Estamos rebuildando a tela!');}));
           /*É desta forma que estamos passando as informações da tela inicial para a tela de formulário:
    O parâmetro menuContext na classe do formulário recebe o argumento context que estamos enviando por aqui.
    */
         },
+
         child: const Icon(Icons.add),
       ),
     );
