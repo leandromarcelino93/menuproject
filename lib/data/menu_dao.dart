@@ -14,7 +14,34 @@ class MenuDao {
   static String _price = 'price';
   static String _image = 'image';
 
-  save(MenuOptions optionmenu) async {}
+  save(MenuOptions optionmenu) async {
+    print('Iniciando o save: ');
+    final Database bancoDeDados = await getDatabase();
+    var itemExists = await find(optionmenu.menuoption);
+    Map<String,dynamic> optionMap = toMap(optionmenu);
+    if(itemExists.isEmpty){
+      print('a opção não Existia.');
+      return await bancoDeDados.insert(_tablename, optionMap);
+    } else {
+      print('A opção já existia!');
+      return await bancoDeDados.update(
+        _tablename,
+        optionMap,
+        where: '$_name = ?',
+        whereArgs: [optionmenu.menuoption],
+      );
+    }
+  }
+
+  Map<String,dynamic> toMap(MenuOptions optionmenu){
+    print('Convertendo Opçao em Map: ');
+    final Map<String,dynamic> mapaDeOpcoes = Map();
+    mapaDeOpcoes[_name] = optionmenu.menuoption;
+    mapaDeOpcoes[_price] = optionmenu.priceoption;
+    mapaDeOpcoes[_image] = optionmenu.optionphoto;
+    print('Mapa de Opções: $mapaDeOpcoes');
+    return mapaDeOpcoes;
+  }
 
   Future<List<MenuOptions>> findAll() async {
     print('Acessando o findAll: ');
@@ -23,6 +50,7 @@ class MenuDao {
     print('Procurando dads no banco de dados... Encontrado: $result');
     return toList(result);
   }
+
   List<MenuOptions> toList(List<Map<String,dynamic>> mapaDeOpcoes){
   print('Convertendo to List: ');
   final List<MenuOptions> opcoes = [];
@@ -34,7 +62,6 @@ class MenuDao {
   return opcoes;
   }
 
-
   Future<List<MenuOptions>> find(String NomeDaOpcao) async {
     print('Acessando find: ');
     final Database bancoDeDados = await getDatabase();
@@ -44,6 +71,10 @@ class MenuDao {
     return toList(result);
   }
 
-  delete(String NomeDaOpcao) async {}
+  delete(String NomeDaOpcao) async {
+    print('Deletando uma opção: $NomeDaOpcao');
+    final Database bancoDeDados = await getDatabase();
+    return bancoDeDados.delete(_tablename,  where: '$_name = ?', whereArgs: [NomeDaOpcao],);
+  }
 
 }
