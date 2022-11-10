@@ -35,7 +35,14 @@ class MenuDao {
   }
 
 
-  // Future<List<MenuOptions>> find(String NomeDaOpcao) async {}
+  Future<List<MenuOptions>> find(String NomeDaOpcao) async {
+    print('Acessando find: ');
+    final Database bancoDeDados = await getDatabase();
+    final List<Map<String, dynamic>> result = await bancoDeDados.query(
+        _tablename, where: '$_name = ?', whereArgs: [NomeDaOpcao],);
+    print('Tarefa encontrada: ${toList(result)}');
+    return toList(result);
+  }
 
   delete(String NomeDaOpcao) async {}
 
