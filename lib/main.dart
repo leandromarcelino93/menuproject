@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:menuproject/data/menu_inherited.dart';
 import 'package:menuproject/screens/initialscreen.dart';
 
 void main() {
@@ -16,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.red,
       ),
-      home: MenuInherited(child: const InitialScreen()),
+      home: InitialScreen(),
     );
   }
 }
