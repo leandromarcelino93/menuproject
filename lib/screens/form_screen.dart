@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:menuproject/data/menu_inherited.dart';
+import 'package:menuproject/components/menuoptions.dart';
+import 'package:menuproject/data/menu_dao.dart';
 
 class FormScreen extends StatefulWidget {
   const FormScreen({Key? key, required this.menuContext}) : super(key: key);
@@ -135,11 +136,15 @@ class _FormScreenState extends State<FormScreen> {
                         // print(nameController.text);
                         // print(priceController.text);
                         // print(imageController.text);
-                        MenuInherited.of(widget.menuContext).newMenu(
-                          nameController.text,
-                          priceController.text,
-                          imageController.text,
-                        );
+                        MenuDao().save(MenuOptions(
+                            nameController.text,
+                            priceController.text,
+                            imageController.text));
+                        // MenuInherited.of(widget.menuContext).newMenu(
+                        //   nameController.text,
+                        //   priceController.text,
+                        //   imageController.text,
+                        // );
                         //widget.menuContext está trazendo as informações que queremos do contexto presente na tela inicial
                         ScaffoldMessenger.of(context)
                             .showSnackBar(const SnackBar(

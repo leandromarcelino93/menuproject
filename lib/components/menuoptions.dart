@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:menuproject/data/menu_dao.dart';
 
 class MenuOptions extends StatefulWidget {
   final String menuoption;
@@ -27,33 +28,44 @@ class _MenuOptionsState extends State<MenuOptions> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Container(
-                width: 190,
-                height: 120,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Container(
-                          child: Text(widget.menuoption,
-                              style: TextStyle(
-                                fontSize: 21,
-                              )),
-                          width: 100,
-                          height: 50,
-                          color: Colors.white),
-                      Container(
-                          child: Text(widget.priceoption,
-                              style: TextStyle(
-                                fontSize: 21,
-                              )),
-                          width: 100,
-                          height: 50,
-                          color: Colors.white),
-                    ],
+              Row(
+                children: [
+                  ElevatedButton(
+                    onLongPress: () {
+                      MenuDao().delete(widget.menuoption);
+                    },
+                    onPressed: () {},
+                    child: const Icon(Icons.remove),
                   ),
-                ),
+                  Container(
+                    width: 190,
+                    height: 120,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Container(
+                              child: Text(widget.menuoption,
+                                  style: TextStyle(
+                                    fontSize: 21,
+                                  )),
+                              width: 100,
+                              height: 50,
+                              color: Colors.white),
+                          Container(
+                              child: Text(widget.priceoption,
+                                  style: TextStyle(
+                                    fontSize: 21,
+                                  )),
+                              width: 100,
+                              height: 50,
+                              color: Colors.white),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
               Container(
                 child: Image.network(

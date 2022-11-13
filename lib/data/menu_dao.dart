@@ -47,7 +47,7 @@ class MenuDao {
     print('Acessando o findAll: ');
     final Database bancoDeDados = await getDatabase();
     final List<Map<String,dynamic>> result = await bancoDeDados.query(_tablename);
-    print('Procurando dads no banco de dados... Encontrado: $result');
+    print('Procurando dados no banco de dados... Encontrado: $result');
     return toList(result);
   }
 
