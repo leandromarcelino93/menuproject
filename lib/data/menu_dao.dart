@@ -67,7 +67,7 @@ class MenuDao {
     final Database bancoDeDados = await getDatabase();
     final List<Map<String, dynamic>> result = await bancoDeDados.query(
         _tablename, where: '$_name = ?', whereArgs: [NomeDaOpcao],);
-    print('Tarefa encontrada: ${toList(result)}');
+    print('Opção encontrada: ${toList(result)}');
     return toList(result);
   }
 
