@@ -75,8 +75,8 @@ class _MenuOptionsState extends State<MenuOptions> {
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
                     color: Colors.blue),
-                width: 110,
-                height: 130,
+                width: 90,
+                height: 110,
               ),
             ],
           ),

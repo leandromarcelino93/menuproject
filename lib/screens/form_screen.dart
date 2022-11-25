@@ -31,7 +31,9 @@ class _FormScreenState extends State<FormScreen> {
       key: _formKey,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Adicionar Nova Opção ao Cardápio'),
+          title: const Text('Adicionar Nova Opção ao Cardápio', style: TextStyle(
+            fontSize: 18,
+          ),),
         ),
         body: Center(
           child: SingleChildScrollView(
