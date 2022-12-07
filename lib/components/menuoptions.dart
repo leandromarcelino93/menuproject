@@ -38,7 +38,7 @@ class _MenuOptionsState extends State<MenuOptions> {
                     child: const Icon(Icons.remove),
                   ),
                   Container(
-                    width: 190,
+                    width: 160,
                     height: 120,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -75,8 +75,8 @@ class _MenuOptionsState extends State<MenuOptions> {
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
                     color: Colors.blue),
-                width: 90,
-                height: 110,
+                width: 80,
+                height: 90,
               ),
             ],
           ),
